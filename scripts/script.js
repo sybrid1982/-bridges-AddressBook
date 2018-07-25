@@ -45,6 +45,7 @@ class AddressBook {
         }
     }
 }
+
 let contact1 = new Contact('Syd', 'notfake@totallylegit.real', '123-456-7890', 'me');
 let contact2 = new Contact('Jon', "don'tknow@maybeshould.ask", "098-765-4321", 'classmate');
 let contact3 = new Contact('Steve Buscemi', 'steve@busc@emi', '111-222-3333', 'none');
@@ -114,4 +115,41 @@ let getIndex = (actionString) => {
             }
         }
     } while(command !== null && command.toLowerCase() !== 'quit')
+})();
+
+const formAdd = () => {
+    let name = document.getElementById('name').value;
+    let phone = document.getElementById('phone').value;
+    let email = document.getElementById('email').value;
+    let relation = document.getElementById('relation').value;
+    addressBook.add(name, phone, email, relation);
+}
+
+const formDeleteIndex = () => {
+    let index = parseInt(document.getElementById('index').value);
+    if(!isNaN(index) && index >= 0){
+        addressBook.deleteAt(index);
+    }
+}
+
+const formDeleteName = () => {
+    let name = document.getElementById('name').value;
+    addressBook.deleteByName(name);
+}
+
+const formModifyByIndex = () => {
+    let index = parseInt(document.getElementById('index').value);
+    let name = document.getElementById('name').value;
+    let phone = document.getElementById('phone').value;
+    let email = document.getElementById('email').value;
+    let relation = document.getElementById('relation').value;
+    addressBook.updateAtIndex(index, name, phone, email, relation);
+}
+
+(function() {
+    document.getElementById('add').addEventListener('click', formAdd, false);
+    document.getElementById('deleteIndex').addEventListener('click', formDeleteIndex, false);
+    document.getElementById('print').addEventListener('click', () => { addressBook.print(); } , false);
+    document.getElementById('deleteName').addEventListener('click', formDeleteName, false);
+    document.getElementById('modifyName').addEventListener('click', formModifyByIndex, false);
 })();
