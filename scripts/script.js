@@ -146,6 +146,16 @@ const formModifyByIndex = () => {
     addressBook.updateAtIndex(index, name, phone, email, relation);
 }
 
+const printRecordToScreen = (index, contact) => {
+    let html = '<section id="record-%id%"> <div id="index">Index: %id%</div> <div id="name">Name: %name%</div> <div id="phone">Phone: %phone%</section> <section id="email">E-mail: %email%</section> <section id="relation">Relation: %relation%</section>'
+
+    let newHtml = html.replace('%id%', index);
+    newHtml = newHtml.replace('%name%', contact.name);
+    newHtml = newHtml.replace('%phone%', contact.phone);
+    newHtml = newHtml.replace('%email%', contact.email);
+    newHtml = newHtml.replace('%relation%', contact.relation);
+}
+
 (function() {
     document.getElementById('add').addEventListener('click', formAdd, false);
     document.getElementById('deleteIndex').addEventListener('click', formDeleteIndex, false);
