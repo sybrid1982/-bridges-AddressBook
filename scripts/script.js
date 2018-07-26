@@ -147,19 +147,45 @@ const formModifyByIndex = () => {
 }
 
 const printRecordToScreen = (index, contact) => {
-    let html = '<section id="record-%id%"> <div id="index">Index: %id%</div> <div id="name">Name: %name%</div> <div id="phone">Phone: %phone%</section> <section id="email">E-mail: %email%</section> <section id="relation">Relation: %relation%</section>'
+    let html = '<section id="record-%id%"> <div id="index">Index: %id%</div> <div id="name">Name: %name%</div> <div id="phone">Phone: %phone%</div> <div id="email">E-mail: %email%</div> <section id="relation">Relation: %relation%</section>'
 
     let newHtml = html.replace('%id%', index);
+    newHtml = newHtml.replace('%id%', index);
     newHtml = newHtml.replace('%name%', contact.name);
     newHtml = newHtml.replace('%phone%', contact.phone);
     newHtml = newHtml.replace('%email%', contact.email);
     newHtml = newHtml.replace('%relation%', contact.relation);
+
+    document.querySelector('.right').insertAdjacentHTML('beforeend', newHtml);
+
+    console.log('called');
+}
+
+const printBook = () => {
+    let oldRecords = document.querySelector('.right').childNodes;
+
+    if(oldRecords.length > 0) {
+        for(let i = 0; i < oldRecords.length; i++) {
+            oldRecords[i].parentNode.removeChild(oldRecords[i]);
+        }
+    }
+
+    for(let j = 0; j < addressBook.addressBook.length; j++) {
+        printRecordToScreen(j, addressBook.addressBook[j]);
+    }
+
+    let newRecords = document.querySelector('.right').childNodes;
+    if(newRecords) {
+        for(let k = 0; k < newRecords.length; k++) {
+            newRecords[k].style.border = 'black solid 2px';
+        } 
+    }
 }
 
 (function() {
     document.getElementById('add').addEventListener('click', formAdd, false);
     document.getElementById('deleteIndex').addEventListener('click', formDeleteIndex, false);
-    document.getElementById('print').addEventListener('click', () => { addressBook.print(); } , false);
+    document.getElementById('print').addEventListener('click', printBook, false);
     document.getElementById('deleteName').addEventListener('click', formDeleteName, false);
     document.getElementById('modifyName').addEventListener('click', formModifyByIndex, false);
 })();

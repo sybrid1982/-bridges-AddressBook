@@ -3,10 +3,25 @@ form {
     flex-direction: column;
     justify-content: space-evenly;
     align-content: center;
-    width: 50%;
+    width: 100%;
     border: 2px solid black;
 }
 
 form * {
     margin: 5px;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+}
+
+.left {
+    width: 48%;
+    margin: 2%;
+}
+
+.right {
+    width: 48%;
+    margin: 2%;
 }
