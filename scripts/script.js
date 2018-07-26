@@ -177,7 +177,7 @@ const printBook = () => {
     let newRecords = document.querySelector('.right').childNodes;
     if(newRecords) {
         for(let k = 0; k < newRecords.length; k++) {
-            newRecords[k].style.border = 'black solid 2px';
+            newRecords[k].classList.add('contact');
         } 
     }
 }

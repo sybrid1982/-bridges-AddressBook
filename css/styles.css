@@ -25,3 +25,13 @@ body {
     width: 48%;
     margin: 2%;
 }
+
+.contact:hover {
+    background-color: #dddddd;
+}
+
+.contact {
+    border: black solid 2px;
+    padding: 2px;
+    margin: 2px;
+}
